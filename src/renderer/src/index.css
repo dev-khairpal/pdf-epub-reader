@@ -1,0 +1,495 @@
+/* ===========================
+   LUMINA READER — Design System
+   =========================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400&family=Outfit:wght@300;400;500;600;700&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap');
+
+:root {
+  /* Colors */
+  --c-bg:        #0C0C0E;
+  --c-surface:   #141416;
+  --c-surface2:  #1C1C1F;
+  --c-border:    rgba(255,255,255,0.07);
+  --c-border2:   rgba(255,255,255,0.12);
+  --c-text1:     #FAFAFA;
+  --c-text2:     #8A8A8F;
+  --c-text3:     #505055;
+  --c-white:     #FFFFFF;
+
+  /* Fonts */
+  --f-display:   'Outfit', sans-serif;
+  --f-serif:     'Playfair Display', serif;
+  --f-reading:   'EB Garamond', serif;
+
+  /* Spacing */
+  --sp-xs:   4px;
+  --sp-sm:   8px;
+  --sp-md:   16px;
+  --sp-lg:   24px;
+  --sp-xl:   40px;
+  --sp-2xl:  64px;
+
+  /* Radius */
+  --r-sm:    8px;
+  --r-md:    12px;
+  --r-lg:    18px;
+  --r-xl:    24px;
+  --r-pill:  999px;
+
+  /* Transitions */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ===========================
+   Reset & Base
+   =========================== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body, #root {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+body {
+  font-family: var(--f-display);
+  background: var(--c-bg);
+  color: var(--c-text1);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+button { cursor: pointer; border: none; background: none; font-family: inherit; color: inherit; }
+input  { font-family: inherit; }
+
+/* ===========================
+   App Shell
+   =========================== */
+.app-shell {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+}
+
+/* ===========================
+   Sidebar
+   =========================== */
+.sidebar {
+  width: 260px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  background: var(--c-surface);
+  border-right: 1px solid var(--c-border);
+  padding: 28px 16px;
+  gap: 8px;
+}
+
+.sidebar-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 4px 12px 20px;
+  margin-bottom: 8px;
+}
+
+.sidebar-logo-mark {
+  width: 34px;
+  height: 34px;
+  background: var(--c-white);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--c-bg);
+  font-family: var(--f-serif);
+  font-size: 17px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  flex-shrink: 0;
+}
+
+.sidebar-logo-text {
+  font-family: var(--f-display);
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--c-text1);
+}
+
+.sidebar-section-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--c-text3);
+  padding: 16px 12px 6px;
+}
+
+.nav-btn {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 11px 14px;
+  border-radius: var(--r-md);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--c-text2);
+  transition: all 0.2s var(--ease-out);
+  position: relative;
+  width: 100%;
+  text-align: left;
+  letter-spacing: 0.01em;
+}
+
+.nav-btn:hover {
+  color: var(--c-text1);
+  background: rgba(255,255,255,0.05);
+}
+
+.nav-btn.active {
+  color: var(--c-text1);
+  background: rgba(255,255,255,0.08);
+}
+
+.nav-btn.active::before {
+  content: '';
+  position: absolute;
+  left: -16px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 3px;
+  height: 18px;
+  background: var(--c-white);
+  border-radius: 0 4px 4px 0;
+}
+
+.sidebar-spacer { flex: 1; }
+
+.add-book-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: var(--c-white);
+  color: var(--c-bg);
+  padding: 13px 20px;
+  border-radius: var(--r-pill);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  width: 100%;
+  transition: all 0.3s var(--ease-out);
+  box-shadow: 0 0 0 0 rgba(255,255,255,0);
+}
+
+.add-book-btn:hover {
+  background: #E8E8E8;
+  transform: translateY(-1px);
+  box-shadow: 0 8px 24px rgba(255,255,255,0.12);
+}
+
+.add-book-btn:active { transform: scale(0.98); }
+
+/* ===========================
+   Main Content
+   =========================== */
+.main-content {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  background: var(--c-bg);
+  background-image: radial-gradient(ellipse 80% 50% at 50% -20%, rgba(255,255,255,0.03) 0%, transparent 70%);
+}
+
+/* Scrollbar */
+.main-content::-webkit-scrollbar { width: 5px; }
+.main-content::-webkit-scrollbar-track { background: transparent; }
+.main-content::-webkit-scrollbar-thumb { background: var(--c-surface2); border-radius: 99px; }
+
+.library-view {
+  padding: 56px 56px 100px;
+  max-width: 1400px;
+  width: 100%;
+}
+
+/* ===========================
+   Library Header
+   =========================== */
+.library-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 64px;
+  gap: 24px;
+}
+
+.library-title {
+  font-family: var(--f-serif);
+  font-size: 52px;
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--c-text1);
+}
+
+.library-subtitle {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--c-text3);
+  margin-top: 10px;
+}
+
+.search-wrap {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  background: var(--c-surface);
+  border: 1px solid var(--c-border);
+  border-radius: var(--r-pill);
+  padding: 4px 4px 4px 16px;
+  transition: all 0.25s;
+}
+
+.search-wrap:focus-within {
+  border-color: var(--c-border2);
+  background: var(--c-surface2);
+}
+
+.search-icon { color: var(--c-text3); flex-shrink: 0; }
+
+.search-input {
+  background: none;
+  border: none;
+  outline: none;
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--c-text1);
+  width: 240px;
+  padding: 8px 8px;
+}
+
+.search-input::placeholder { color: var(--c-text3); }
+
+/* ===========================
+   Book Grid
+   =========================== */
+.book-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(175px, 1fr));
+  gap: 40px 28px;
+}
+
+.book-item {
+  cursor: pointer;
+  user-select: none;
+}
+
+.book-cover-wrap {
+  position: relative;
+  aspect-ratio: 2/3;
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  background: var(--c-surface2);
+  margin-bottom: 16px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.5);
+  transition: all 0.4s var(--ease-out);
+}
+
+.book-item:hover .book-cover-wrap {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.7), 0 0 0 1px rgba(255,255,255,0.08);
+}
+
+.book-cover-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: filter 0.4s;
+}
+
+.book-item:hover .book-cover-img {
+  filter: brightness(1.05);
+}
+
+.book-cover-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.2) 50%, transparent 100%);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.book-item:hover .book-cover-overlay { opacity: 1; }
+
+.book-delete-btn {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(0,0,0,0.6);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255,255,255,0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255,255,255,0.5);
+  opacity: 0;
+  transform: scale(0.8);
+  transition: all 0.2s;
+}
+
+.book-item:hover .book-delete-btn {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.book-delete-btn:hover {
+  background: rgba(239, 68, 68, 0.7);
+  color: white;
+}
+
+.book-progress-bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 16px;
+  transform: translateY(6px);
+  opacity: 0;
+  transition: all 0.3s var(--ease-out);
+}
+
+.book-item:hover .book-progress-bar {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.progress-label {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.5);
+  margin-bottom: 6px;
+}
+
+.progress-track {
+  width: 100%;
+  height: 2px;
+  background: rgba(255,255,255,0.2);
+  border-radius: 99px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: white;
+  border-radius: 99px;
+}
+
+.book-format-badge {
+  position: absolute;
+  bottom: 12px;
+  left: 12px;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.6);
+  background: rgba(0,0,0,0.5);
+  backdrop-filter: blur(8px);
+  padding: 4px 8px;
+  border-radius: 6px;
+  border: 1px solid rgba(255,255,255,0.1);
+}
+
+.book-title {
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--c-text1);
+  margin-bottom: 5px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.book-author {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--c-text3);
+  letter-spacing: 0.03em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ===========================
+   Empty State
+   =========================== */
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 40px;
+  text-align: center;
+  border: 1px dashed rgba(255,255,255,0.08);
+  border-radius: var(--r-xl);
+  margin-top: 20px;
+}
+
+.empty-state-icon {
+  width: 72px;
+  height: 72px;
+  border-radius: var(--r-lg);
+  background: var(--c-surface);
+  border: 1px solid var(--c-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--c-text3);
+  margin-bottom: 24px;
+}
+
+.empty-state-title {
+  font-family: var(--f-serif);
+  font-size: 22px;
+  font-weight: 400;
+  color: var(--c-text2);
+  margin-bottom: 10px;
+}
+
+.empty-state-desc {
+  font-size: 13px;
+  color: var(--c-text3);
+  line-height: 1.7;
+  max-width: 280px;
+}
+
+/* ===========================
+   Reader (Floating Layout)
+   =========================== */
+.reader-shell {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+}
+
+.reader-body {
+  flex: 1;
+  width: 100%;
+  overflow-x: hidden;
+  position: relative;
+}
