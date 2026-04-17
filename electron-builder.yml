@@ -11,6 +11,12 @@ win:
   icon: build/icon.png
   target:
     - nsis
+linux:
+  target:
+    - deb
+    - AppImage
+  category: Utility
+  icon: build/icon.png
 nsis:
   oneClick: false
   allowToChangeInstallationDirectory: true
